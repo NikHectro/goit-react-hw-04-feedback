@@ -1,0 +1,15 @@
+.reaction {
+  font-size: larger;
+  font-weight: 500;
+  color: brown;
+  text-transform: capitalize;
+}
+
+.asume {
+  display: flex;
+  flex-direction: column;
+  font-size: xx-larger;
+  font-weight: 800;
+  color: green;
+  text-transform: capitalize;
+}

@@ -1,5 +1,9 @@
 import React from 'react';
 import { Component } from 'react';
+import Statistics from './Statistics/Statistics';
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Section from './Section/Section';
+import Notification from './Notification/Notification';
 
 export class App extends Component {
   static defaultProps = {
@@ -30,30 +34,35 @@ export class App extends Component {
     return total > 0 ? Math.round((good / total) * 100) : 0;
   };
 
-  // handleGood = evt => {
-  //   console.log(evt);
-  //   this.setState(prevState => ({
-  //     good: prevState.good + 1,
-  //   }));
-  // };
-  // handleNeutral = () => {
-  //   this.setState(prevState => ({
-  //     neutral: prevState.neutral + 1,
-  //   }));
-  // };
-  // handleBad = () => {
-  //   this.setState(prevState => ({
-  //     bad: prevState.bad + 1,
-  //   }));
-  // };
   render() {
     const keys = Object.keys(this.state);
     const values = Object.entries(this.state);
-    console.log(values);
+    const total = this.countTotalFeedback();
+
     return (
       <div>
         <h1>Please leave feedback</h1>
-        {keys.map(key => (
+        <Section title="Feedback form:">
+          <FeedbackOptions keys={keys} handleBtnClick={this.handleBtnClick} />
+        </Section>
+
+        <Section title="Statistics:">
+          {total > 0 ? (
+            <Statistics
+              values={values}
+              total={total}
+              positivePercentage={this.countPositiveFeedbackPercentage()}
+            />
+          ) : (
+            <Notification message="There is no feedbacks" />
+          )}
+        </Section>
+      </div>
+    );
+  }
+}
+
+/* {keys.map(key => (
           <button
             type="button"
             key={key}
@@ -61,9 +70,9 @@ export class App extends Component {
           >
             {key}
           </button>
-        ))}
+        ))} */
 
-        {/* <button type="button" name="good" onClick={this.handleBtnClick}>
+/* <button type="button" name="good" onClick={this.handleBtnClick}>
           Good
         </button>
         <button type="button" name="neutral" onClick={this.handleBtnClick}>
@@ -71,23 +80,4 @@ export class App extends Component {
         </button>
         <button type="button" name="bad" onClick={this.handleBtnClick}>
           Bad
-        </button> */}
-
-        <ul>
-          {values.map(item => (
-            <li className="reaction" key={item[0]}>
-              <p>
-                {item[0]}: {item[1]}
-              </p>
-            </li>
-          ))}
-        </ul>
-
-        <span>Total: {this.countTotalFeedback()}</span>
-        <span>
-          Positive feedback: {this.countPositiveFeedbackPercentage()}%
-        </span>
-      </div>
-    );
-  }
-}
+        </button> */
