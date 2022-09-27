@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import css from './FeedbackOptions.module.css';
 
 const FeedbackOptions = ({ keys, handleBtnClick }) => {
-  const markup = keys.map(key => (
+  return keys.map(key => (
     <button
       type="button"
       key={key}
@@ -13,7 +13,6 @@ const FeedbackOptions = ({ keys, handleBtnClick }) => {
       {key}
     </button>
   ));
-  return markup;
 };
 
 export default FeedbackOptions;

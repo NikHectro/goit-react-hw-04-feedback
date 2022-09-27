@@ -26,7 +26,7 @@ const Statistics = ({ values, total, positivePercentage }) => {
 export default Statistics;
 
 Statistics.propTypes = {
-  values: PropTypes.array.isRequired,
+  values: PropTypes.arrayOf(PropTypes.array).isRequired,
   total: PropTypes.number,
   positivePercentage: PropTypes.number,
 };
